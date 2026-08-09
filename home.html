@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVAGO — Les tendances à portée de main</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#FF6A00; --orange-dark:#E25A00; --navy:#0D1B2A; --navy-soft:#152539;
+  --white:#FFFFFF; --grey:#F2F2F2; --grey-line:#e3e3e3; --text-soft:#5b6572; --radius:14px;
+  --green:#1f9d55; --red:#d64545; --blue:#3556d1;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:'Open Sans',sans-serif;color:var(--navy);background:#fff;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+img{max-width:100%;display:block;}
+.container{max-width:1240px;margin:0 auto;padding:0 24px;}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;}
+table{border-collapse:collapse;width:100%;}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--grey-line);}
+.nav-row{display:flex;align-items:center;gap:22px;padding:14px 0;flex-wrap:wrap;}
+.logo{font-family:'Poppins';font-weight:900;font-size:22px;color:var(--navy);cursor:pointer;}
+.logo span{color:var(--orange);}
+nav.main-nav{display:flex;gap:20px;flex:1;flex-wrap:wrap;}
+nav.main-nav a{font-weight:700;font-size:14px;padding:6px 0;cursor:pointer;}
+nav.main-nav a:hover, nav.main-nav a.active{color:var(--orange);}
+.nav-icons{display:flex;align-items:center;gap:10px;}
+.icon-btn{position:relative;height:38px;border-radius:999px;background:var(--grey);display:flex;align-items:center;justify-content:center;padding:0 16px;gap:6px;font-weight:700;font-size:13px;}
+.icon-btn:hover{background:#e9e9e9;}
+.badge{position:absolute;top:-6px;right:-6px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .18s,box-shadow .18s,background .2s;}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 24px -8px rgba(255,106,0,.5);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-outline{background:#fff;border:1.5px solid var(--navy);color:var(--navy);}
+.btn-outline:hover{background:var(--navy);color:#fff;}
+.btn-danger{background:#fdeceb;color:var(--red);font-weight:700;}
+.btn-danger:hover{background:var(--red);color:#fff;}
+.btn-green{background:#e7f6ec;color:var(--green);font-weight:700;}
+.btn-green:hover{background:var(--green);color:#fff;}
+.btn-sm{padding:8px 14px;font-size:12.5px;border-radius:999px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+
+.view{display:none;}
+.view.active{display:block;}
+
+.hero{background:var(--navy);color:#fff;padding:60px 0;}
+.hero .container{display:flex;align-items:center;gap:50px;flex-wrap:wrap;}
+.hero-copy{flex:1;min-width:280px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,106,0,.14);color:var(--orange);font-weight:700;font-size:12.5px;letter-spacing:.06em;padding:7px 14px;border-radius:999px;margin-bottom:20px;}
+.hero h1{font-size:clamp(30px,4vw,46px);line-height:1.1;font-weight:800;margin:0 0 16px;}
+.hero h1 .go{color:var(--orange);}
+.hero p{font-size:16px;color:#b8c4d1;max-width:440px;line-height:1.6;margin:0 0 26px;}
+.hero-visual{flex:1;min-width:240px;display:flex;justify-content:center;}
+.hero-card{background:#fff;color:var(--navy);border-radius:18px;padding:22px;width:230px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);transform:rotate(-3deg);}
+.hero-card .ph{height:100px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:34px;}
+.hero-card .price{color:var(--orange);font-weight:800;font-size:17px;}
+
+.section{padding:44px 0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.section-head h2{font-size:23px;margin:0 0 6px;font-weight:800;}
+.section-head p{margin:0;color:var(--text-soft);font-size:14px;}
+
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.cat-card{background:var(--grey);border-radius:var(--radius);padding:20px 14px;text-align:center;border:2px solid transparent;}
+.cat-card:hover{background:#ececec;}
+.cat-card.active{border-color:var(--orange);background:#fff4ea;}
+.cat-ico{font-size:24px;margin-bottom:8px;}
+.cat-card span{display:block;font-weight:700;font-size:13px;}
+
+.filters-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{padding:9px 17px;border-radius:999px;background:var(--grey);font-weight:600;font-size:13px;}
+.chip.active{background:var(--navy);color:#fff;}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.pcard{border:1px solid var(--grey-line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;}
+.pcard:hover{box-shadow:0 18px 34px -18px rgba(13,27,42,.28);}
+.pimg{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:56px;}
+.pimg .fav{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.promo-flag{position:absolute;top:10px;left:10px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:800;padding:4px 8px;border-radius:6px;}
+.pinfo{padding:14px 15px 16px;display:flex;flex-direction:column;gap:7px;flex:1;}
+.pcat{font-size:10.5px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;}
+.pname{font-size:14.5px;font-weight:700;line-height:1.35;min-height:38px;cursor:pointer;}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:2px;}
+.price-wrap{display:flex;align-items:baseline;gap:7px;}
+.price{font-family:'Poppins';font-weight:800;font-size:17px;}
+.old-price{font-size:12px;color:#a3adb8;text-decoration:line-through;}
+.add-btn{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;}
+.add-btn:hover{background:var(--orange);}
+.empty-state{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--text-soft);}
+
+.pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:30px 0 60px;align-items:flex-start;}
+.gallery-main{aspect-ratio:1/1;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:110px;}
+.pdp-info h1{font-size:25px;margin:0 0 10px;font-weight:800;}
+.pdp-price{display:flex;align-items:baseline;gap:12px;margin:16px 0 6px;}
+.pdp-price .now{font-family:'Poppins';font-weight:800;font-size:27px;}
+.pdp-price .old{font-size:15px;color:#a3adb8;text-decoration:line-through;}
+.stock-line{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--green);font-weight:600;margin:14px 0 20px;}
+.qty-select{display:flex;align-items:center;gap:14px;background:var(--grey);border-radius:999px;padding:8px;width:130px;justify-content:space-between;margin-bottom:20px;}
+.qty-select button{width:26px;height:26px;border-radius:50%;background:#fff;font-weight:700;}
+.action-row{display:flex;gap:12px;flex-wrap:wrap;}
+.pdp-desc{margin-top:22px;color:#33404d;font-size:14.5px;line-height:1.7;max-width:480px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--text-soft);margin:20px 0 0;cursor:pointer;}
+.back-link:hover{color:var(--orange);}
+
+.form-card{max-width:440px;margin:50px auto;background:#fff;border:1px solid var(--grey-line);border-radius:var(--radius);padding:34px;}
+.form-card h2{margin:0 0 6px;font-size:22px;}
+.form-card .sub{color:var(--text-soft);font-size:13.5px;margin-bottom:22px;}
+.form-row{margin-bottom:16px;}
+.form-row label{display:block;font-weight:700;font-size:13px;margin-bottom:6px;}
+.form-row input,.form-row select,.form-row textarea{width:100%;padding:11px 14px;border:1.5px solid var(--grey-line);border-radius:10px;font-size:14px;font-family:inherit;outline:none;}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--orange);}
+.form-toggle{display:flex;gap:8px;margin-bottom:22px;background:var(--grey);padding:5px;border-radius:999px;}
+.form-toggle button{flex:1;padding:10px;border-radius:999px;font-weight:700;font-size:13.5px;}
+.form-toggle button.active{background:var(--navy);color:#fff;}
+.err-msg{color:var(--red);font-size:13px;margin-top:-8px;margin-bottom:14px;display:none;}
+.hint{font-size:11.5px;color:var(--text-soft);margin-top:5px;}
+
+.acc-hero{background:var(--navy);color:#fff;padding:34px 0;}
+.acc-hero .container{display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;}
+.avatar{width:52px;height:52px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:18px;}
+.acc-id{display:flex;align-items:center;gap:16px;}
+.acc-id h1{margin:0 0 4px;font-size:18px;}
+.acc-id span{color:#9fb0c0;font-size:13px;}
+.acc-grid{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:flex-start;padding:32px 0 70px;}
+.side-nav{background:#fff;border:1px solid var(--grey-line);border-radius:var(--radius);padding:10px;}
+.side-item{display:block;padding:11px 14px;border-radius:10px;font-weight:600;font-size:13.5px;cursor:pointer;}
+.side-item:hover{background:var(--grey);}
+.side-item.active{background:#fff4ea;color:var(--orange);}
+.acc-panel{display:none;}
+.acc-panel.active{display:block;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;}
+.stat-card{background:var(--grey);border-radius:var(--radius);padding:18px;text-align:center;}
+.stat-card b{display:block;font-size:20px;font-family:'Poppins';}
+.order-card{border:1px solid var(--grey-line);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
+.order-top{display:flex;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.order-ref{font-weight:800;font-size:14px;}
+.order-date{color:var(--text-soft);font-size:12px;}
+.status{padding:4px 11px;border-radius:999px;font-size:11px;font-weight:800;}
+.status.en_attente{background:#fff4ea;color:var(--orange);}
+.status.confirmee{background:#e7f6ec;color:var(--green);}
+.status.annulee{background:#fdeceb;color:var(--red);}
+.order-foot{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-top:10px;}
+.empty-note{color:var(--text-soft);font-size:13.5px;padding:20px;text-align:center;background:var(--grey);border-radius:var(--radius);}
+
+.aff-hero{background:linear-gradient(135deg,var(--navy),#1e3b57);color:#fff;padding:60px 0;text-align:center;}
+.aff-hero h1{font-size:32px;margin:0 0 14px;}
+.aff-hero p{max-width:560px;margin:0 auto 24px;color:#b8c4d1;}
+.aff-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:640px;margin:0 auto;}
+.aff-stats div{background:rgba(255,255,255,.08);border-radius:14px;padding:16px;}
+.aff-stats b{display:block;font-size:22px;font-family:'Poppins';color:var(--orange);}
+.aff-code-box{background:var(--grey);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.aff-code{font-family:'Poppins';font-weight:800;font-size:18px;letter-spacing:.05em;color:var(--navy);}
+
+.cart-row{display:grid;grid-template-columns:60px 1fr auto auto auto;gap:14px;align-items:center;border-bottom:1px solid var(--grey-line);padding:14px 0;}
+.cart-row .em{font-size:34px;}
+.cart-name{font-weight:700;font-size:14px;}
+.cart-cat{font-size:11.5px;color:var(--text-soft);}
+.qty-mini{display:flex;align-items:center;gap:8px;background:var(--grey);border-radius:999px;padding:5px;}
+.qty-mini button{width:24px;height:24px;border-radius:50%;background:#fff;font-weight:700;}
+.cart-total-box{background:var(--grey);border-radius:var(--radius);padding:22px;}
+.cart-total-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;}
+.cart-total-row.grand{font-weight:800;font-size:17px;border-top:1px solid var(--grey-line);padding-top:12px;}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:14px 24px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:200;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+footer{background:var(--navy);color:#9fb0c0;padding:30px 0;text-align:center;font-size:12.5px;margin-top:40px;}
+footer a{text-decoration:underline;cursor:pointer;}
+
+/* Admin shell */
+.admin-shell{display:none;grid-template-columns:230px 1fr;min-height:100vh;background:#f5f6f8;}
+.admin-shell.active{display:grid;}
+.sidebar{background:var(--navy);color:#cfd8e3;padding:20px 14px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.side-logo{font-family:'Poppins';font-weight:900;font-size:19px;color:#fff;padding:8px 10px 22px;}
+.side-logo span{color:var(--orange);}
+.admin-link{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;font-size:13.5px;font-weight:600;margin-bottom:3px;color:#cfd8e3;}
+.admin-link.active{background:rgba(255,106,0,.16);color:#fff;}
+.admin-link:hover:not(.active){background:rgba(255,255,255,.06);}
+.admin-main{padding:0;}
+.admin-topbar{background:#fff;border-bottom:1px solid var(--grey-line);padding:16px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;}
+.admin-topbar h1{font-size:19px;margin:0;font-weight:800;}
+.admin-content{padding:24px 28px 60px;}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.kpi-card{background:#fff;border:1px solid var(--grey-line);border-radius:var(--radius);padding:18px 20px;}
+.kpi-card .lbl{font-size:12px;color:var(--text-soft);font-weight:600;margin-bottom:6px;}
+.kpi-card b{font-size:24px;font-family:'Poppins';}
+.panel-box{background:#fff;border:1px solid var(--grey-line);border-radius:var(--radius);padding:22px;margin-bottom:20px;}
+.panel-box h3{margin:0 0 16px;font-size:16px;}
+.admin-form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.admin-form-grid input,.admin-form-grid select,.admin-form-grid textarea{padding:10px 12px;border:1.5px solid var(--grey-line);border-radius:8px;font-size:13.5px;font-family:inherit;}
+.data-table th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);padding:10px 8px;border-bottom:2px solid var(--grey-line);}
+.data-table td{padding:12px 8px;border-bottom:1px solid var(--grey-line);font-size:13.5px;vertical-align:middle;}
+.pill{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;}
+.pill.admin{background:#e6ecff;color:var(--blue);}
+.pill.client{background:var(--grey);color:var(--navy);}
+.act-btns{display:flex;gap:6px;}
+
+@media(max-width:900px){
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .product-grid{grid-template-columns:repeat(2,1fr);}
+  .pdp-grid{grid-template-columns:1fr;}
+  .acc-grid{grid-template-columns:1fr;}
+  .admin-shell.active{grid-template-columns:1fr;}
+  .sidebar{position:static;height:auto;}
+  nav.main-nav{order:3;width:100%;}
+}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container nav-row">
+    <div class="logo" onclick="goTo('home')">NOVA<span>GO</span></div>
+    <nav class="main-nav">
+      <a onclick="goTo('home')" data-nav="home">Accueil</a>
+      <a onclick="goTo('catalog')" data-nav="catalog">Catalogue</a>
+      <a onclick="goTo('affiliation')" data-nav="affiliation">Affiliation</a>
+    </nav>
+    <div class="nav-icons">
+      <button class="icon-btn" onclick="goTo('cart')">🛒 Panier<span class="badge" id="cartBadge">0</span></button>
+      <button class="icon-btn" id="accountBtn">👤 Compte</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div class="admin-shell" id="adminShell">
+  <aside class="sidebar">
+    <div class="side-logo">NOVA<span>GO</span> · Admin</div>
+    <a class="admin-link" data-tab="dashboard" onclick="goAdminTab('dashboard')">📊 Tableau de bord</a>
+    <a class="admin-link" data-tab="users" onclick="goAdminTab('users')">👥 Utilisateurs</a>
+    <a class="admin-link" data-tab="products" onclick="goAdminTab('products')">📦 Produits</a>
+    <a class="admin-link" data-tab="orders" onclick="goAdminTab('orders')">🧾 Commandes</a>
+    <a class="admin-link" data-tab="affiliates" onclick="goAdminTab('affiliates')">🔗 Affiliation</a>
+    <a class="admin-link" style="margin-top:20px;color:#ff8a6a" onclick="adminLogout()">🚪 Quitter l'admin</a>
+    <a class="admin-link" style="color:#8fa0b3" onclick="goTo('home')">← Retour au site</a>
+  </aside>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 id="adminTitle">Tableau de bord</h1>
+      <div class="admin-avatar" style="width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;">AD</div>
+    </div>
+    <div class="admin-content">
+      <div class="admin-panel active" id="panel-dashboard"></div>
+      <div class="admin-panel" id="panel-users"></div>
+      <div class="admin-panel" id="panel-products"></div>
+      <div class="admin-panel" id="panel-orders"></div>
+      <div class="admin-panel" id="panel-order-detail"></div>
+      <div class="admin-panel" id="panel-affiliates"></div>
+    </div>
+  </div>
+</div>
+
+<footer id="siteFooter">
+  <div class="container">
+    NOVAGO © 2026 — Les tendances à portée de main · <a onclick="goTo('adminlogin')">Espace administrateur</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script>
+/* ============================================================
+   STORAGE HELPERS (persistent, shared across all users of the site)
+   ============================================================ */
+async function sGet(key, shared){
+  try{ const r = await window.storage.get(key, shared); return r ? JSON.parse(r.value) : null; }
+  catch(e){ return null; }
+}
+async function sSet(key, value, shared){
+  try{ await window.storage.set(key, JSON.stringify(value), shared); return true; }
+  catch(e){ console.error('storage error', e); return false; }
+}
+
+const CATS = [
+  {id:'electronique', label:'Électronique', emoji:'🎧', grad:['#0d1b2a','#3d5a76']},
+  {id:'mode', label:'Mode', emoji:'👗', grad:['#7a2e6e','#c2568f']},
+  {id:'maison', label:'Maison', emoji:'🛋️', grad:['#2e6e4f','#5cb37f']},
+  {id:'beaute', label:'Beauté', emoji:'💄', grad:['#a13a3a','#e0716b']},
+  {id:'sport', label:'Sport', emoji:'⚽', grad:['#1f5a8c','#4fa0d9']},
+];
+function catOf(id){ return CATS.find(c=>c.id===id) || CATS[0]; }
+
+const MOROCCO_CITIES = [
+  'Agadir','Al Hoceïma','Assilah','Azemmour','Azrou','Béni Mellal','Benguerir','Berkane','Berrechid',
+  'Boujdour','Bouznika','Casablanca','Chefchaouen','Dakhla','Demnate','El Jadida','El Kelaâ des Sraghna',
+  'Errachidia','Essaouira','Fès','Fkih Ben Salah','Guelmim','Guercif','Ifrane','Imzouren','Inezgane',
+  'Kénitra','Khemisset','Khénifra','Khouribga','Ksar El Kébir','Laâyoune','Larache','Marrakech','Martil',
+  'Meknès','Midelt','Mohammédia','Nador','Ouarzazate','Ouazzane','Oued Zem','Oujda','Rabat','Safi','Salé',
+  'Sefrou','Settat','Sidi Bennour','Sidi Ifni','Sidi Kacem','Sidi Slimane','Skhirat','Smara','Tan-Tan',
+  'Tanger','Taounate','Taourirt','Taroudant','Taza','Témara','Tétouan','Tiflet','Tiznit','Youssoufia'
+].sort((a,b)=>a.localeCompare(b,'fr'));
+
+function cityOptionsHTML(selected){
+  return `<option value="">Sélectionner une ville</option>` +
+    MOROCCO_CITIES.map(c=>`<option value="${c}" ${selected===c?'selected':''}>${c}</option>`).join('');
+}
+
+const DEFAULT_PRODUCTS = [
+  {id:1, name:'Casque sans fil ProSound X2', cat:'electronique', price:349, oldPrice:449, stock:24, desc:"Casque Bluetooth à réduction de bruit active, 30h d'autonomie, confort longue durée.", emoji:'🎧'},
+  {id:2, name:'Montre connectée FitTrack', cat:'electronique', price:599, oldPrice:0, stock:15, desc:'Suivi santé complet, GPS intégré, étanche, 7 jours d\'autonomie.', emoji:'⌚'},
+  {id:3, name:'Veste urbaine imperméable', cat:'mode', price:429, oldPrice:520, stock:18, desc:'Veste technique coupe-vent et imperméable, coupe moderne, plusieurs coloris.', emoji:'🧥'},
+  {id:4, name:'Sneakers Runner Air', cat:'mode', price:349, oldPrice:0, stock:32, desc:'Sneakers légères et respirantes pour un usage quotidien ou sportif.', emoji:'👟'},
+  {id:5, name:'Lampe design LumiHome', cat:'maison', price:189, oldPrice:239, stock:40, desc:'Lampe à poser au design scandinave, lumière chaude réglable.', emoji:'💡'},
+  {id:6, name:'Set de coussins déco (x4)', cat:'maison', price:159, oldPrice:0, stock:27, desc:'Set de 4 coussins déco 100% coton, plusieurs motifs assortis.', emoji:'🛋️'},
+  {id:7, name:'Palette maquillage GlowUp', cat:'beaute', price:249, oldPrice:299, stock:20, desc:'Palette 18 teintes haute pigmentation, longue tenue.', emoji:'💄'},
+  {id:8, name:'Coffret soins visage bio', cat:'beaute', price:299, oldPrice:0, stock:16, desc:'Routine complète nettoyant, sérum et crème hydratante bio.', emoji:'🧴'},
+  {id:9, name:'Ballon de football pro', cat:'sport', price:129, oldPrice:159, stock:35, desc:'Ballon homologué, matière durable, toutes surfaces.', emoji:'⚽'},
+  {id:10, name:'Tapis de yoga premium', cat:'sport', price:179, oldPrice:0, stock:29, desc:'Tapis antidérapant épais 8mm, confortable et durable.', emoji:'🧘'},
+  {id:11, name:'Enceinte portable BoomBox', cat:'electronique', price:399, oldPrice:459, stock:12, desc:'Enceinte Bluetooth waterproof, son puissant, 12h d\'autonomie.', emoji:'🔊'},
+  {id:12, name:'Sac à dos citadin', cat:'mode', price:259, oldPrice:0, stock:22, desc:'Sac à dos avec compartiment laptop, résistant à l\'eau.', emoji:'🎒'},
+];
+
+let state = {
+  users: [],
+  products: [],
+  orders: [],
+  affiliates: [],
+  session: null,       // {userId}
+  adminSession: false,
+  cart: [],
+  currentProductId: null,
+  currentCat: 'all',
+  authMode: 'login',
+  editingProductId: null,
+  adminProductView: 'list',   // 'list' | 'form'
+  productPhotosDraft: [],
+};
+
+/* ============================================================
+   IMAGE HELPERS (photo upload -> compressed data URL)
+   ============================================================ */
+function compressImageFile(file, maxDim, quality){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      const img = new Image();
+      img.onload = ()=>{
+        let w = img.width, h = img.height;
+        if(w > h){ if(w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; } }
+        else { if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; } }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+async function handleProductPhotosChange(input){
+  const files = Array.from(input.files || []);
+  if(!files.length) return;
+  for(const file of files){
+    if(!file.type.startsWith('image/')) continue;
+    try{
+      const dataUrl = await compressImageFile(file, 700, 0.82);
+      state.productPhotosDraft.push(dataUrl);
+    }catch(err){ showToast("Impossible de charger une image"); }
+  }
+  input.value = '';
+  renderPhotoDraftPreview();
+}
+function removeDraftPhoto(index){
+  state.productPhotosDraft.splice(index, 1);
+  renderPhotoDraftPreview();
+}
+function renderPhotoDraftPreview(){
+  const wrap = document.getElementById('photoDraftWrap');
+  if(!wrap) return;
+  wrap.innerHTML = state.productPhotosDraft.map((src,i)=>`
+    <div style="position:relative;width:90px;height:90px;">
+      <img src="${src}" style="width:90px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--grey-line);">
+      <button type="button" onclick="removeDraftPhoto(${i})" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;">✕</button>
+      ${i===0?`<span style="position:absolute;bottom:-8px;left:2px;background:var(--navy);color:#fff;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:6px;">Principale</span>`:''}
+    </div>`).join('');
+}
+
+const ADMIN_EMAIL = 'admin@novago.ma';
+const ADMIN_PASSWORD = 'Fadakach@84';
+
+function uid(prefix){ return prefix + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function money(n){ return n + ' MAD'; }
+
+
+/* ============================================================
+   INIT / SEED
+   ============================================================ */
+async function seedIfNeeded(){
+  let users = await sGet('novago:users', true);
+  if(!users){
+    users = [{
+      id:'admin_root', fullName:'Administrateur NOVAGO', email:ADMIN_EMAIL, sexe:'',
+      password:ADMIN_PASSWORD, role:'admin', createdAt: new Date().toISOString().slice(0,10)
+    }];
+    await sSet('novago:users', users, true);
+  } else if(!users.find(u=>u.email===ADMIN_EMAIL)){
+    users.push({id:'admin_root', fullName:'Administrateur NOVAGO', email:ADMIN_EMAIL, sexe:'', password:ADMIN_PASSWORD, role:'admin', createdAt:new Date().toISOString().slice(0,10)});
+    await sSet('novago:users', users, true);
+  }
+  state.users = users;
+
+  let products = await sGet('novago:products', true);
+  if(!products){ products = DEFAULT_PRODUCTS; await sSet('novago:products', products, true); }
+  state.products = products;
+
+  let orders = await sGet('novago:orders', true);
+  if(!orders){ orders = []; await sSet('novago:orders', orders, true); }
+  state.orders = orders;
+
+  let affiliates = await sGet('novago:affiliates', true);
+  if(!affiliates){ affiliates = []; await sSet('novago:affiliates', affiliates, true); }
+  state.affiliates = affiliates;
+
+  const session = await sGet('novago:session', false);
+  state.session = session || null;
+
+  const cart = await sGet('novago:cart', false);
+  state.cart = cart || [];
+
+  const adminSession = await sGet('novago:adminSession', false);
+  state.adminSession = !!adminSession;
+}
+
+async function persistUsers(){ await sSet('novago:users', state.users, true); }
+async function persistProducts(){ await sSet('novago:products', state.products, true); }
+async function persistOrders(){ await sSet('novago:orders', state.orders, true); }
+async function persistAffiliates(){ await sSet('novago:affiliates', state.affiliates, true); }
+async function persistCart(){ await sSet('novago:cart', state.cart, false); }
+async function persistSession(){ await sSet('novago:session', state.session, false); }
+async function persistAdminSession(){ await sSet('novago:adminSession', state.adminSession, false); }
+
+function currentUser(){
+  if(!state.session) return null;
+  return state.users.find(u=>u.id===state.session.userId) || null;
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+/* ============================================================
+   HEADER / ACCOUNT BUTTON
+   ============================================================ */
+function updateHeader(){
+  document.querySelectorAll('nav.main-nav a').forEach(a=>a.classList.toggle('active', a.dataset.nav===state.view));
+  document.getElementById('cartBadge').textContent = state.cart.reduce((s,i)=>s+i.qty,0);
+  const btn = document.getElementById('accountBtn');
+  const u = currentUser();
+  btn.innerHTML = u ? '👤 ' + u.fullName.split(' ')[0] : '👤 Connexion';
+  btn.onclick = ()=> u ? goTo('account') : goTo('login');
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function goTo(view, params){
+  params = params || {};
+  state.view = view;
+  document.getElementById('siteHeader').style.display = 'block';
+  document.getElementById('siteFooter').style.display = 'block';
+  document.getElementById('adminShell').classList.remove('active');
+  document.getElementById('app').style.display = 'block';
+
+  if(view === 'product') state.currentProductId = params.productId;
+
+  const renderers = {
+    home: renderHome, catalog: renderCatalog, product: renderProduct,
+    cart: renderCart, login: renderAuth, account: renderAccount,
+    affiliation: renderAffiliation, adminlogin: renderAdminLogin,
+  };
+  if(view === 'account' && !currentUser()){ state.authMode='login'; view='login'; }
+  (renderers[view] || renderHome)();
+  updateHeader();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function goAdmin(){
+  document.getElementById('siteHeader').style.display = 'none';
+  document.getElementById('siteFooter').style.display = 'none';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('adminShell').classList.add('active');
+  goAdminTab('dashboard');
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+function renderHome(){
+  const featured = state.products.slice(0,4);
+  document.getElementById('app').innerHTML = `
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <div class="eyebrow">● Nouvelle collection</div>
+        <h1>Les tendances à portée de <span class="go">main</span></h1>
+        <p>Découvrez notre sélection de produits électronique, mode, maison, beauté et sport, livrés partout au Maroc.</p>
+        <button class="btn btn-primary" onclick="goTo('catalog')">Découvrir le catalogue →</button>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="ph" style="background:linear-gradient(135deg,#0d1b2a,#3d5a76);">🎧</div>
+          <h4>Casque ProSound X2</h4>
+          <div class="price">349 MAD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section container">
+    <div class="section-head"><h2>Catégories</h2></div>
+    <div class="cat-grid">
+      ${CATS.map(c=>`<div class="cat-card" onclick="goTo('catalog');setTimeout(()=>filterCat('${c.id}'),0)"><div class="cat-ico">${c.emoji}</div><span>${c.label}</span></div>`).join('')}
+    </div>
+  </section>
+  <section class="section container">
+    <div class="section-head"><h2>Produits en vedette</h2><p>Notre sélection du moment</p></div>
+    <div class="product-grid">${featured.map(productCardHTML).join('')}</div>
+  </section>
+  <section class="section container">
+    <div class="section-head"><h2>Programme d'affiliation NOVAGO</h2><p>Gagnez des commissions en recommandant nos produits</p></div>
+    <div style="background:var(--navy);border-radius:var(--radius);padding:30px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+      <p style="margin:0;max-width:480px;color:#b8c4d1;">Inscrivez-vous, partagez votre lien et touchez une commission sur chaque vente réalisée grâce à vous.</p>
+      <button class="btn btn-primary" onclick="goTo('affiliation')">Devenir affilié</button>
+    </div>
+  </section>`;
+  attachProductCardEvents();
+}
+
+function pImages(p){
+  if(p.images && p.images.length) return p.images;
+  if(p.image) return [p.image];
+  return [];
+}
+function pMainImage(p){ const imgs = pImages(p); return imgs.length ? imgs[0] : null; }
+function pVisualStyle(p){
+  const c = catOf(p.cat);
+  const img = pMainImage(p);
+  return img ? `background-image:url('${img}');background-size:cover;background-position:center;` : `background:linear-gradient(135deg,${c.grad[0]},${c.grad[1]});`;
+}
+function pVisualContent(p){ return pMainImage(p) ? '' : p.emoji; }
+
+function productCardHTML(p){
+  const c = catOf(p.cat);
+  const isFav = false;
+  return `<div class="pcard">
+    <div class="pimg" style="${pVisualStyle(p)}" data-open="${p.id}">
+      ${p.oldPrice>0?`<span class="promo-flag">PROMO</span>`:''}
+      <span class="fav">♡</span>${pVisualContent(p)}
+    </div>
+    <div class="pinfo">
+      <span class="pcat">${c.label}</span>
+      <span class="pname" data-open="${p.id}">${p.name}</span>
+      <div class="price-row">
+        <div class="price-wrap"><span class="price">${money(p.price)}</span>${p.oldPrice>0?`<span class="old-price">${money(p.oldPrice)}</span>`:''}</div>
+        <button class="add-btn" data-add="${p.id}">+</button>
+      </div>
+    </div>
+  </div>`;
+}
+function attachProductCardEvents(){
+  document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click', ()=>goTo('product', {productId:Number(el.dataset.open)})));
+  document.querySelectorAll('[data-add]').forEach(el=>el.addEventListener('click', (e)=>{ e.stopPropagation(); addToCart(Number(el.dataset.add), 1); }));
+}
+
+/* ============================================================
+   CATALOG
+   ============================================================ */
+function filterCat(id){ state.currentCat = id; renderCatalog(); }
+function renderCatalog(){
+  document.getElementById('app').innerHTML = `
+  <section class="section container">
+    <div class="section-head"><h2>Catalogue</h2><p>${state.products.length} produits disponibles</p></div>
+    <div class="filters-bar" id="filtersBar"></div>
+    <div class="product-grid" id="catalogGrid"></div>
+  </section>`;
+  const bar = document.getElementById('filtersBar');
+  const chips = [{id:'all', label:'Tout'}, ...CATS];
+  bar.innerHTML = chips.map(c=>`<div class="chip ${state.currentCat===c.id?'active':''}" data-chip="${c.id}">${c.label||c.label}</div>`).join('');
+  bar.querySelectorAll('[data-chip]').forEach(el=>el.addEventListener('click', ()=>filterCat(el.dataset.chip)));
+  const list = state.currentCat==='all' ? state.products : state.products.filter(p=>p.cat===state.currentCat);
+  const grid = document.getElementById('catalogGrid');
+  grid.innerHTML = list.length ? list.map(productCardHTML).join('') : `<div class="empty-state">Aucun produit dans cette catégorie.</div>`;
+  attachProductCardEvents();
+}
+
+/* ============================================================
+   PRODUCT DETAIL
+   ============================================================ */
+function renderProduct(){
+  const p = state.products.find(x=>x.id===state.currentProductId);
+  if(!p){ goTo('catalog'); return; }
+  const c = catOf(p.cat);
+  const imgs = pImages(p);
+  const u = currentUser();
+  const myAff = u ? state.affiliates.find(a=>a.userId===u.id && a.status==='actif') : null;
+  document.getElementById('app').innerHTML = `
+  <div class="container">
+    <div class="back-link" onclick="goTo('catalog')">← Retour au catalogue</div>
+    <div class="pdp-grid">
+      <div>
+        <div class="gallery-main" id="galleryMain" style="${pVisualStyle(p)}">${pVisualContent(p)}</div>
+        ${imgs.length>1 ? `<div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+          ${imgs.map((src,i)=>`<img src="${src}" data-thumb="${i}" style="width:64px;height:64px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid ${i===0?'var(--orange)':'var(--grey-line)'};">`).join('')}
+        </div>` : ''}
+      </div>
+      <div class="pdp-info">
+        <span class="pcat">${c.label}</span>
+        <h1>${p.name}</h1>
+        <div class="pdp-price"><span class="now">${money(p.price)}</span>${p.oldPrice>0?`<span class="old">${money(p.oldPrice)}</span>`:''}</div>
+        <div class="stock-line"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--green);"></span>${p.stock>0?'En stock — '+p.stock+' disponibles':'Rupture de stock'}</div>
+        <div class="qty-select"><button id="qtyMinus">−</button><span id="qtyVal">1</span><button id="qtyPlus">+</button></div>
+        <div class="action-row">
+          <button class="btn btn-primary" id="addCartBtn" ${p.stock<=0?'disabled':''}>Ajouter au panier</button>
+          <button class="btn btn-outline" onclick="goTo('cart')">Voir le panier</button>
+        </div>
+        <p class="pdp-desc">${p.desc}</p>
+        ${myAff ? `
+        <div class="aff-code-box" style="margin-top:22px;">
+          <div>
+            <div style="font-size:12px;color:var(--text-soft);margin-bottom:4px;">Votre lien d'affiliation pour ce produit</div>
+            <div class="aff-code" style="font-size:14px;">${affiliateProductCode(myAff, p)}</div>
+          </div>
+          <button class="btn-sm btn-outline" id="copyProdAffLink">Copier le lien</button>
+        </div>` : ''}
+      </div>
+    </div>
+  </div>`;
+  document.querySelectorAll('[data-thumb]').forEach(t=>t.addEventListener('click', ()=>{
+    const src = imgs[Number(t.dataset.thumb)];
+    document.getElementById('galleryMain').style.backgroundImage = `url('${src}')`;
+    document.getElementById('galleryMain').textContent = '';
+    document.querySelectorAll('[data-thumb]').forEach(x=>x.style.borderColor='var(--grey-line)');
+    t.style.borderColor = 'var(--orange)';
+  }));
+  if(myAff){
+    document.getElementById('copyProdAffLink').addEventListener('click', ()=>{
+      const link = affiliateProductLink(myAff, p);
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(()=>showToast('Lien copié !')).catch(()=>showToast(link));
+      } else { showToast(link); }
+    });
+  }
+  let qty = 1;
+  document.getElementById('qtyMinus').onclick = ()=>{ qty=Math.max(1,qty-1); document.getElementById('qtyVal').textContent=qty; };
+  document.getElementById('qtyPlus').onclick = ()=>{ qty=Math.min(p.stock||99,qty+1); document.getElementById('qtyVal').textContent=qty; };
+  document.getElementById('addCartBtn').onclick = ()=>addToCart(p.id, qty);
+}
+
+/* ============================================================
+   CART
+   ============================================================ */
+async function addToCart(productId, qty){
+  const p = state.products.find(x=>x.id===productId);
+  if(!p) return;
+  const existing = state.cart.find(i=>i.productId===productId);
+  if(existing) existing.qty += qty; else state.cart.push({productId, qty});
+  await persistCart();
+  updateHeader();
+  showToast(p.name + ' ajouté au panier');
+}
+async function setQty(productId, qty){
+  const it = state.cart.find(i=>i.productId===productId);
+  if(!it) return;
+  if(qty<=0){ state.cart = state.cart.filter(i=>i.productId!==productId); }
+  else it.qty = qty;
+  await persistCart();
+  renderCart(); updateHeader();
+}
+function renderCart(){
+  const rows = state.cart.map(i=>{
+    const p = state.products.find(x=>x.id===i.productId);
+    if(!p) return '';
+    const c = catOf(p.cat);
+    return `<div class="cart-row">
+      <div class="em" style="${pVisualStyle(p)}width:60px;height:60px;border-radius:12px;display:flex;align-items:center;justify-content:center;">${pVisualContent(p)}</div>
+      <div><div class="cart-name">${p.name}</div><div class="cart-cat">${c.label}</div></div>
+      <div class="qty-mini"><button data-dec="${p.id}">−</button><span>${i.qty}</span><button data-inc="${p.id}">+</button></div>
+      <div style="font-weight:800;">${money(p.price*i.qty)}</div>
+      <button class="btn-sm btn-danger" data-remove="${p.id}">Retirer</button>
+    </div>`;
+  }).join('');
+  const total = state.cart.reduce((s,i)=>{ const p=state.products.find(x=>x.id===i.productId); return s + (p?p.price*i.qty:0); },0);
+  document.getElementById('app').innerHTML = `
+  <section class="section container">
+    <div class="section-head"><h2>Mon panier</h2></div>
+    ${state.cart.length===0 ? `<div class="empty-state">Votre panier est vide. <br><button class="btn btn-primary" style="margin-top:14px;" onclick="goTo('catalog')">Voir le catalogue</button></div>` : `
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:30px;align-items:flex-start;">
+      <div>${rows}</div>
+      <div class="cart-total-box">
+        <div class="cart-total-row"><span>Sous-total</span><span>${money(total)}</span></div>
+        <div class="cart-total-row"><span>Livraison</span><span>Gratuite</span></div>
+        <div class="cart-total-row grand"><span>Total</span><span>${money(total)}</span></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:14px;" id="checkoutBtn">Passer la commande</button>
+      </div>
+    </div>`}
+  </section>`;
+  document.querySelectorAll('[data-inc]').forEach(b=>b.addEventListener('click', ()=>{ const it=state.cart.find(i=>i.productId==b.dataset.inc); setQty(Number(b.dataset.inc), it.qty+1); }));
+  document.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click', ()=>{ const it=state.cart.find(i=>i.productId==b.dataset.dec); setQty(Number(b.dataset.dec), it.qty-1); }));
+  document.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click', ()=>setQty(Number(b.dataset.remove), 0)));
+  const co = document.getElementById('checkoutBtn');
+  if(co) co.addEventListener('click', placeOrder);
+}
+
+async function placeOrder(){
+  const u = currentUser();
+  if(!u){ showToast('Connectez-vous pour valider votre commande'); goTo('login'); return; }
+  if(state.cart.length===0) return;
+  if(!u.address || !u.phone){
+    showToast('Veuillez renseigner votre adresse et téléphone de livraison avant de commander');
+    goTo('account');
+    setTimeout(()=>{
+      document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));
+      document.querySelectorAll('.acc-panel').forEach(p=>p.classList.remove('active'));
+      const navItem = document.querySelector('.side-item[data-panel="profile"]');
+      const panel = document.querySelector('.acc-panel[data-panel="profile"]');
+      if(navItem && panel){ navItem.classList.add('active'); panel.classList.add('active'); }
+    },0);
+    return;
+  }
+  const items = state.cart.map(i=>{
+    const p = state.products.find(x=>x.id===i.productId);
+    return {productId:p.id, name:p.name, emoji:p.emoji, image:pMainImage(p), qty:i.qty, price:p.price};
+  });
+  const total = items.reduce((s,i)=>s+i.price*i.qty,0);
+  const now = new Date();
+  const order = {
+    id: uid('ord'), ref: 'NV' + Math.floor(10000+Math.random()*89999),
+    userId: u.id, userName: u.fullName, userEmail: u.email,
+    shippingPhone: u.phone, shippingAddress: u.address, shippingCity: u.city,
+    items, total, status:'en_attente', date: now.toISOString().slice(0,10),
+    time: now.toTimeString().slice(0,5)
+  };
+  state.orders.unshift(order);
+  await persistOrders();
+  state.cart = [];
+  await persistCart();
+  updateHeader();
+  showToast('Commande #' + order.ref + ' enregistrée !');
+  goTo('account');
+}
+
+/* ============================================================
+   AUTH (login / register)
+   ============================================================ */
+function renderAuth(){
+  const mode = state.authMode || 'login';
+  document.getElementById('app').innerHTML = `
+  <div class="form-card">
+    <div class="form-toggle">
+      <button id="tabLogin" class="${mode==='login'?'active':''}">Connexion</button>
+      <button id="tabRegister" class="${mode==='register'?'active':''}">Inscription</button>
+    </div>
+    <div id="authFormWrap"></div>
+  </div>`;
+  document.getElementById('tabLogin').onclick = ()=>{ state.authMode='login'; renderAuth(); };
+  document.getElementById('tabRegister').onclick = ()=>{ state.authMode='register'; renderAuth(); };
+  const wrap = document.getElementById('authFormWrap');
+  if(mode==='login'){
+    wrap.innerHTML = `
+      <h2>Connexion</h2>
+      <div class="sub">Accédez à votre compte NOVAGO</div>
+      <form id="loginForm">
+        <div class="form-row"><label>E-mail</label><input type="email" id="liEmail" required></div>
+        <div class="form-row"><label>Mot de passe</label><input type="password" id="liPassword" required></div>
+        <div class="err-msg" id="loginErr">E-mail ou mot de passe incorrect.</div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Se connecter</button>
+      </form>`;
+    document.getElementById('loginForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('liEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('liPassword').value;
+      const u = state.users.find(x=>x.email.toLowerCase()===email && x.password===pass);
+      if(!u){ document.getElementById('loginErr').style.display='block'; return; }
+      if(u.role==='admin'){ showToast("Utilisez l'espace administrateur pour ce compte"); goTo('adminlogin'); return; }
+      state.session = {userId:u.id};
+      await persistSession();
+      showToast('Bienvenue, ' + u.fullName.split(' ')[0] + ' !');
+      goTo('account');
+    });
+  } else {
+    wrap.innerHTML = `
+      <h2>Créer un compte</h2>
+      <div class="sub">Inscription rapide par e-mail</div>
+      <form id="registerForm">
+        <div class="form-row"><label>Nom complet</label><input type="text" id="riName" required></div>
+        <div class="form-row"><label>E-mail</label><input type="email" id="riEmail" required></div>
+        <div class="form-row"><label>Sexe</label>
+          <select id="riSexe" required>
+            <option value="">Sélectionner</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Téléphone</label><input type="tel" id="riPhone" placeholder="06 12 34 56 78" required></div>
+        <div class="form-row"><label>Adresse de livraison</label><input type="text" id="riAddress" placeholder="N°, rue, quartier" required></div>
+        <div class="form-row"><label>Ville</label><select id="riCity" required>${cityOptionsHTML('')}</select></div>
+        <div class="form-row"><label>Mot de passe</label><input type="password" id="riPassword" minlength="6" required><div class="hint">6 caractères minimum</div></div>
+        <div class="err-msg" id="registerErr">Cet e-mail est déjà utilisé.</div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Créer mon compte</button>
+      </form>`;
+    document.getElementById('registerForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const fullName = document.getElementById('riName').value.trim();
+      const email = document.getElementById('riEmail').value.trim().toLowerCase();
+      const sexe = document.getElementById('riSexe').value;
+      const phone = document.getElementById('riPhone').value.trim();
+      const address = document.getElementById('riAddress').value.trim();
+      const city = document.getElementById('riCity').value.trim();
+      const password = document.getElementById('riPassword').value;
+      if(state.users.find(u=>u.email.toLowerCase()===email)){ document.getElementById('registerErr').style.display='block'; return; }
+      const newUser = {id: uid('usr'), fullName, email, sexe, phone, address, city, password, role:'client', createdAt:new Date().toISOString().slice(0,10)};
+      state.users.push(newUser);
+      await persistUsers();
+      state.session = {userId:newUser.id};
+      await persistSession();
+      showToast('Compte créé — bienvenue, ' + fullName.split(' ')[0] + ' !');
+      goTo('account');
+    });
+  }
+}
+
+async function logout(){
+  state.session = null;
+  await persistSession();
+  updateHeader();
+  showToast('Vous êtes déconnecté(e)');
+  goTo('home');
+}
+
+/* ============================================================
+   ACCOUNT (client space)
+   ============================================================ */
+function renderAccount(){
+  const u = currentUser();
+  if(!u){ goTo('login'); return; }
+  const myOrders = state.orders.filter(o=>o.userId===u.id);
+  const myAff = state.affiliates.find(a=>a.userId===u.id);
+  const initials = u.fullName.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('app').innerHTML = `
+  <section class="acc-hero">
+    <div class="container">
+      <div class="acc-id">
+        <div class="avatar">${initials}</div>
+        <div><h1>Bonjour, ${u.fullName}</h1><span>${u.email}</span></div>
+      </div>
+      <button class="btn btn-outline" style="background:transparent;color:#fff;border-color:#fff;" id="logoutBtn">Déconnexion</button>
+    </div>
+  </section>
+  <section class="container">
+    <div class="acc-grid">
+      <div class="side-nav">
+        <div class="side-item active" data-panel="overview">Vue d'ensemble</div>
+        <div class="side-item" data-panel="orders">Mes commandes</div>
+        <div class="side-item" data-panel="profile">Mes informations</div>
+        <div class="side-item" data-panel="affiliate">Programme affiliation</div>
+      </div>
+      <div>
+        <div class="acc-panel active" data-panel="overview">
+          <div class="stat-grid">
+            <div class="stat-card"><b>${myOrders.length}</b>Commandes</div>
+            <div class="stat-card"><b>${myOrders.reduce((s,o)=>s+o.total,0)}</b>MAD dépensés</div>
+            <div class="stat-card"><b>${myAff && myAff.status==='actif' ? myAff.commissionRate+'%' : '—'}</b>Commission affilié</div>
+          </div>
+          ${myOrders.length ? orderCardHTML(myOrders[0]) : `<div class="empty-note">Aucune commande pour le moment.</div>`}
+        </div>
+        <div class="acc-panel" data-panel="orders">
+          ${myOrders.length ? myOrders.map(orderCardHTML).join('') : `<div class="empty-note">Vous n'avez pas encore passé de commande.</div>`}
+        </div>
+        <div class="acc-panel" data-panel="profile">
+          <form id="infoForm">
+            <div class="form-row"><label>Nom complet</label><input id="fName" value="${u.fullName}"></div>
+            <div class="form-row"><label>E-mail</label><input id="fEmail" value="${u.email}" type="email"></div>
+            <div class="form-row"><label>Sexe</label>
+              <select id="fSexe">
+                <option value="" ${!u.sexe?'selected':''}>Non précisé</option>
+                <option value="Homme" ${u.sexe==='Homme'?'selected':''}>Homme</option>
+                <option value="Femme" ${u.sexe==='Femme'?'selected':''}>Femme</option>
+              </select>
+            </div>
+            <div class="form-row"><label>Téléphone</label><input id="fPhone" value="${u.phone||''}" type="tel" placeholder="06 12 34 56 78"></div>
+            <div class="form-row"><label>Adresse de livraison</label><input id="fAddress" value="${u.address||''}" placeholder="N°, rue, quartier"></div>
+            <div class="form-row"><label>Ville</label><select id="fCity">${cityOptionsHTML(u.city||'')}</select></div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+          </form>
+        </div>
+        <div class="acc-panel" data-panel="affiliate" id="affPanel"></div>
+      </div>
+    </div>
+  </section>`;
+
+  document.querySelectorAll('.side-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));
+      document.querySelectorAll('.acc-panel').forEach(p=>p.classList.remove('active'));
+      item.classList.add('active');
+      document.querySelector(`.acc-panel[data-panel="${item.dataset.panel}"]`).classList.add('active');
+    });
+  });
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+  document.getElementById('infoForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    u.fullName = document.getElementById('fName').value.trim() || u.fullName;
+    u.email = document.getElementById('fEmail').value.trim() || u.email;
+    u.sexe = document.getElementById('fSexe').value;
+    u.phone = document.getElementById('fPhone').value.trim();
+    u.address = document.getElementById('fAddress').value.trim();
+    u.city = document.getElementById('fCity').value.trim();
+    await persistUsers();
+    showToast('Informations mises à jour');
+    renderAccount();
+  });
+  renderAffiliatePanel(u, myAff);
+}
+
+function orderCardHTML(order){
+  const labels = {en_attente:'En attente', confirmee:'Confirmée', annulee:'Annulée'};
+  return `<div class="order-card">
+    <div class="order-top"><div><div class="order-ref">Commande #${order.ref}</div><div class="order-date">${order.date}${order.time?' à '+order.time:''}</div></div><span class="status ${order.status}">${labels[order.status]}</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">${order.items.map(it=>it.image?`<img src="${it.image}" style="width:30px;height:30px;border-radius:7px;object-fit:cover;">`:`<span style="font-size:26px;">${it.emoji}</span>`).join('')}</div>
+    <div class="order-foot"><span>${order.items.reduce((s,i)=>s+i.qty,0)} article(s)</span><span>${money(order.total)}</span></div>
+  </div>`;
+}
+
+function renderAffiliatePanel(u, myAff){
+  const el = document.getElementById('affPanel');
+  if(!el) return;
+  if(!myAff){
+    el.innerHTML = `
+      <p style="color:var(--text-soft);font-size:14px;max-width:480px;">Rejoignez le programme d'affiliation NOVAGO et touchez une commission sur chaque vente générée grâce à votre lien.</p>
+      <button class="btn btn-primary" id="applyAffBtn">Demander à devenir affilié</button>`;
+    document.getElementById('applyAffBtn').addEventListener('click', async ()=>{
+      const req = {id:uid('aff'), userId:u.id, userName:u.fullName, email:u.email, status:'en_attente', commissionRate:10, code:'', date:new Date().toISOString().slice(0,10)};
+      state.affiliates.push(req);
+      await persistAffiliates();
+      showToast("Demande envoyée — en attente de validation par l'administrateur");
+      renderAccount();
+    });
+  } else if(myAff.status==='en_attente'){
+    el.innerHTML = `<div class="empty-note">Votre demande d'affiliation est en attente de validation par l'administrateur.</div>`;
+  } else if(myAff.status==='refuse'){
+    el.innerHTML = `<div class="empty-note">Votre demande d'affiliation a été refusée.</div>`;
+  } else {
+    el.innerHTML = `
+      <div class="aff-code-box">
+        <div><div style="font-size:12.5px;color:var(--text-soft);margin-bottom:4px;">Votre code affilié</div><div class="aff-code">${myAff.code}</div></div>
+        <div style="text-align:right;"><div style="font-size:12.5px;color:var(--text-soft);">Commission</div><b style="font-size:20px;">${myAff.commissionRate}%</b></div>
+      </div>
+      <div class="panel-box" style="margin-top:16px;">
+        <h3 style="margin:0 0 6px;font-size:15px;">Code d'affiliation par produit</h3>
+        <p style="color:var(--text-soft);font-size:13px;margin:0 0 14px;">Utilisez le code ou le lien spécifique à chaque produit pour toucher votre commission dessus.</p>
+        <table class="data-table"><thead><tr><th>Produit</th><th>Code produit</th><th>Lien à partager</th></tr></thead>
+        <tbody>${state.products.map(p=>{
+          const code = affiliateProductCode(myAff, p);
+          const link = affiliateProductLink(myAff, p);
+          return `<tr>
+            <td>${pMainImage(p)?`<img src="${pMainImage(p)}" style="width:30px;height:30px;object-fit:cover;border-radius:6px;vertical-align:middle;margin-right:6px;">`:`<span style="margin-right:6px;">${p.emoji}</span>`}${p.name}</td>
+            <td style="font-family:'Poppins';font-weight:800;font-size:12.5px;">${code}</td>
+            <td><button class="btn-sm btn-outline" data-copylink="${link}">Copier le lien</button></td>
+          </tr>`;
+        }).join('')}</tbody></table>
+      </div>`;
+    el.querySelectorAll('[data-copylink]').forEach(b=>b.addEventListener('click', ()=>{
+      const link = b.dataset.copylink;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(()=>showToast('Lien copié !')).catch(()=>showToast(link));
+      } else { showToast(link); }
+    }));
+  }
+}
+function affiliateProductCode(aff, product){ return aff.code + '-' + product.id; }
+function affiliateProductLink(aff, product){
+  return location.origin + location.pathname + '#product=' + product.id + '&ref=' + aff.code;
+}
+
+/* ============================================================
+   PUBLIC AFFILIATION PAGE
+   ============================================================ */
+function renderAffiliation(){
+  const u = currentUser();
+  const myAff = u ? state.affiliates.find(a=>a.userId===u.id) : null;
+  const activeCount = state.affiliates.filter(a=>a.status==='actif').length;
+  document.getElementById('app').innerHTML = `
+  <section class="aff-hero">
+    <div class="container">
+      <h1>Programme d'affiliation NOVAGO</h1>
+      <p>Partagez vos produits préférés, générez des ventes et touchez une commission sur chaque commande réalisée grâce à votre lien.</p>
+      <div class="aff-stats">
+        <div><b>10%</b>Commission moyenne</div>
+        <div><b>${activeCount}</b>Affiliés actifs</div>
+        <div><b>0 MAD</b>Frais d'inscription</div>
+      </div>
+    </div>
+  </section>
+  <section class="section container" style="max-width:640px;">
+    <div id="affPublicWrap"></div>
+  </section>`;
+  const wrap = document.getElementById('affPublicWrap');
+  if(!u){
+    wrap.innerHTML = `<div class="empty-note">Connectez-vous ou créez un compte pour rejoindre le programme d'affiliation.</div>
+      <div style="text-align:center;margin-top:16px;"><button class="btn btn-primary" onclick="goTo('login')">Se connecter / S'inscrire</button></div>`;
+  } else if(!myAff){
+    wrap.innerHTML = `<div style="text-align:center;"><p style="color:var(--text-soft);">Vous êtes connecté en tant que ${u.fullName}. Envoyez votre demande d'adhésion ci-dessous.</p>
+      <button class="btn btn-primary" id="applyAffBtn2">Devenir affilié</button></div>`;
+    document.getElementById('applyAffBtn2').addEventListener('click', async ()=>{
+      const req = {id:uid('aff'), userId:u.id, userName:u.fullName, email:u.email, status:'en_attente', commissionRate:10, code:'', date:new Date().toISOString().slice(0,10)};
+      state.affiliates.push(req);
+      await persistAffiliates();
+      showToast('Demande envoyée !');
+      renderAffiliation();
+    });
+  } else if(myAff.status==='actif'){
+    wrap.innerHTML = `<div class="aff-code-box"><div><div style="font-size:12.5px;color:var(--text-soft);">Votre code</div><div class="aff-code">${myAff.code}</div></div><div style="text-align:right;"><div style="font-size:12.5px;color:var(--text-soft);">Commission</div><b style="font-size:20px;">${myAff.commissionRate}%</b></div></div>
+      <div class="panel-box" style="margin-top:16px;">
+        <h3 style="margin:0 0 6px;font-size:15px;">Code d'affiliation par produit</h3>
+        <table class="data-table"><thead><tr><th>Produit</th><th>Code produit</th><th>Lien</th></tr></thead>
+        <tbody>${state.products.map(p=>`<tr>
+          <td>${p.emoji} ${p.name}</td>
+          <td style="font-family:'Poppins';font-weight:800;font-size:12.5px;">${affiliateProductCode(myAff,p)}</td>
+          <td><button class="btn-sm btn-outline" data-copylink2="${affiliateProductLink(myAff,p)}">Copier le lien</button></td>
+        </tr>`).join('')}</tbody></table>
+      </div>`;
+    wrap.querySelectorAll('[data-copylink2]').forEach(b=>b.addEventListener('click', ()=>{
+      const link = b.dataset.copylink2;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(()=>showToast('Lien copié !')).catch(()=>showToast(link));
+      } else { showToast(link); }
+    }));
+  } else {
+    wrap.innerHTML = `<div class="empty-note">Statut de votre demande : ${myAff.status==='en_attente'?'en attente de validation':'refusée'}.</div>`;
+  }
+}
+
+/* ============================================================
+   ADMIN LOGIN
+   ============================================================ */
+function renderAdminLogin(){
+  document.getElementById('app').innerHTML = `
+  <div class="form-card">
+    <h2>Espace administrateur</h2>
+    <div class="sub">Accès réservé à l'administration NOVAGO</div>
+    <form id="adminLoginForm">
+      <div class="form-row"><label>E-mail</label><input type="email" id="adEmail" required></div>
+      <div class="form-row"><label>Mot de passe</label><input type="password" id="adPassword" required></div>
+      <div class="err-msg" id="adminErr">Identifiants incorrects.</div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Accéder au back-office</button>
+    </form>
+  </div>`;
+  document.getElementById('adminLoginForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const email = document.getElementById('adEmail').value.trim().toLowerCase();
+    const pass = document.getElementById('adPassword').value;
+    const admin = state.users.find(u=>u.role==='admin' && u.email.toLowerCase()===email && u.password===pass);
+    if(!admin){ document.getElementById('adminErr').style.display='block'; return; }
+    state.adminSession = true;
+    await persistAdminSession();
+    showToast('Bienvenue dans le back-office');
+    goAdmin();
+  });
+}
+async function adminLogout(){
+  state.adminSession = false;
+  await persistAdminSession();
+  goTo('home');
+}
+
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
+const ADMIN_TITLES = {dashboard:'Tableau de bord', users:'Gestion des utilisateurs', products:'Gestion des produits', orders:'Gestion des commandes', affiliates:"Programme d'affiliation"};
+function goAdminTab(tab){
+  document.querySelectorAll('.admin-link[data-tab]').forEach(a=>a.classList.toggle('active', a.dataset.tab===tab));
+  document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  document.getElementById('adminTitle').textContent = ADMIN_TITLES[tab];
+  const fn = {dashboard:renderAdminDashboard, users:renderAdminUsers, products:renderAdminProducts, orders:renderAdminOrders, affiliates:renderAdminAffiliates}[tab];
+  fn();
+}
+
+function renderAdminDashboard(){
+  const revenue = state.orders.filter(o=>o.status==='confirmee').reduce((s,o)=>s+o.total,0);
+  const pending = state.orders.filter(o=>o.status==='en_attente').length;
+  document.getElementById('panel-dashboard').innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="lbl">Utilisateurs</div><b>${state.users.filter(u=>u.role==='client').length}</b></div>
+      <div class="kpi-card"><div class="lbl">Produits</div><b>${state.products.length}</b></div>
+      <div class="kpi-card"><div class="lbl">Commandes en attente</div><b>${pending}</b></div>
+      <div class="kpi-card"><div class="lbl">Revenu confirmé</div><b>${revenue} MAD</b></div>
+    </div>
+    <div class="panel-box">
+      <h3>Dernières commandes</h3>
+      ${state.orders.slice(0,5).map(o=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--grey-line);font-size:13.5px;">
+        <span>#${o.ref} — ${o.userName}</span><span class="status ${o.status}">${o.status}</span><span>${money(o.total)}</span>
+      </div>`).join('') || '<p style="color:var(--text-soft);">Aucune commande.</p>'}
+    </div>`;
+}
+
+function renderAdminUsers(){
+  document.getElementById('panel-users').innerHTML = `
+    <div class="panel-box">
+      <h3>Ajouter un utilisateur</h3>
+      <form id="addUserForm">
+        <div class="admin-form-grid">
+          <input id="nuName" placeholder="Nom complet" required>
+          <input id="nuEmail" type="email" placeholder="E-mail" required>
+          <select id="nuSexe"><option value="">Sexe</option><option value="Homme">Homme</option><option value="Femme">Femme</option></select>
+          <input id="nuPhone" type="tel" placeholder="Téléphone">
+          <input id="nuAddress" type="text" placeholder="Adresse de livraison">
+          <select id="nuCity">${cityOptionsHTML('')}</select>
+          <input id="nuPassword" type="text" placeholder="Mot de passe" required>
+          <select id="nuRole"><option value="client">Client</option><option value="admin">Admin</option></select>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit">Ajouter</button>
+      </form>
+    </div>
+    <div class="panel-box">
+      <h3>Tous les utilisateurs (${state.users.length})</h3>
+      <table class="data-table"><thead><tr><th>Nom</th><th>E-mail</th><th>Téléphone</th><th>Adresse de livraison</th><th>Rôle</th><th>Créé le</th><th>Actions</th></tr></thead>
+      <tbody>${state.users.map(u=>`<tr>
+        <td>${u.fullName}</td><td>${u.email}</td><td>${u.phone||'—'}</td><td>${u.address?u.address+(u.city?', '+u.city:''):'—'}</td>
+        <td><span class="pill ${u.role}">${u.role}</span></td><td>${u.createdAt}</td>
+        <td class="act-btns">
+          <button class="btn-sm btn-outline" data-edituser="${u.id}">Modifier</button>
+          ${u.id==='admin_root'?'':`<button class="btn-sm btn-danger" data-deluser="${u.id}">Supprimer</button>`}
+        </td>
+      </tr>`).join('')}</tbody></table>
+    </div>`;
+  document.getElementById('addUserForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const email = document.getElementById('nuEmail').value.trim().toLowerCase();
+    if(state.users.find(u=>u.email.toLowerCase()===email)){ showToast('Cet e-mail existe déjà'); return; }
+    state.users.push({id:uid('usr'), fullName:document.getElementById('nuName').value.trim(), email, sexe:document.getElementById('nuSexe').value, phone:document.getElementById('nuPhone').value.trim(), address:document.getElementById('nuAddress').value.trim(), city:document.getElementById('nuCity').value.trim(), password:document.getElementById('nuPassword').value, role:document.getElementById('nuRole').value, createdAt:new Date().toISOString().slice(0,10)});
+    await persistUsers();
+    showToast('Utilisateur ajouté');
+    renderAdminUsers();
+  });
+  document.querySelectorAll('[data-deluser]').forEach(b=>b.addEventListener('click', async ()=>{
+    if(!confirm('Supprimer cet utilisateur ?')) return;
+    state.users = state.users.filter(u=>u.id!==b.dataset.deluser);
+    await persistUsers();
+    renderAdminUsers();
+  }));
+  document.querySelectorAll('[data-edituser]').forEach(b=>b.addEventListener('click', async ()=>{
+    const u = state.users.find(x=>x.id===b.dataset.edituser);
+    const name = prompt('Nom complet', u.fullName); if(name===null) return;
+    const email = prompt('E-mail', u.email); if(email===null) return;
+    const phone = prompt('Téléphone', u.phone||''); if(phone===null) return;
+    const address = prompt('Adresse de livraison', u.address||''); if(address===null) return;
+    const city = prompt('Ville', u.city||''); if(city===null) return;
+    const role = prompt('Rôle (client / admin)', u.role); if(role===null) return;
+    u.fullName = name.trim()||u.fullName; u.email = email.trim()||u.email;
+    u.phone = phone.trim(); u.address = address.trim(); u.city = city.trim();
+    u.role = (role==='admin'?'admin':'client');
+    await persistUsers();
+    showToast('Utilisateur mis à jour');
+    renderAdminUsers();
+  }));
+}
+
+function renderAdminProducts(){
+  if(state.adminProductView === 'form'){
+    renderAdminProductForm();
+  } else {
+    renderAdminProductList();
+  }
+}
+
+function renderAdminProductList(){
+  document.getElementById('panel-products').innerHTML = `
+    <div class="panel-box" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <h3 style="margin:0;">Tous les produits (${state.products.length})</h3>
+      <button class="btn btn-primary btn-sm" id="newProductBtn">+ Ajouter un produit</button>
+    </div>
+    <div class="panel-box">
+      <table class="data-table"><thead><tr><th>Photo</th><th>Produit</th><th>Catégorie</th><th>Prix</th><th>Stock</th><th>Photos</th><th>Actions</th></tr></thead>
+      <tbody>${state.products.map(p=>{
+        const img = pMainImage(p);
+        return `<tr>
+        <td>${img?`<img src="${img}" style="width:38px;height:38px;object-fit:cover;border-radius:8px;">`:`<span style="font-size:22px;">${p.emoji}</span>`}</td>
+        <td style="cursor:pointer;font-weight:700;" data-openprod="${p.id}">${p.name}</td>
+        <td>${catOf(p.cat).label}</td><td>${money(p.price)}</td><td>${p.stock}</td>
+        <td>${pImages(p).length}</td>
+        <td class="act-btns"><button class="btn-sm btn-outline" data-editprod="${p.id}">Voir la fiche</button><button class="btn-sm btn-danger" data-delprod="${p.id}">Supprimer</button></td>
+      </tr>`;}).join('') || `<tr><td colspan="7" style="text-align:center;color:var(--text-soft);">Aucun produit.</td></tr>`}</tbody></table>
+    </div>`;
+
+  document.getElementById('newProductBtn').addEventListener('click', ()=>{
+    state.editingProductId = null;
+    state.productPhotosDraft = [];
+    state.adminProductView = 'form';
+    renderAdminProducts();
+  });
+  document.querySelectorAll('[data-delprod]').forEach(b=>b.addEventListener('click', async ()=>{
+    if(!confirm('Supprimer ce produit ?')) return;
+    state.products = state.products.filter(p=>p.id!=b.dataset.delprod);
+    await persistProducts();
+    renderAdminProducts();
+  }));
+  document.querySelectorAll('[data-editprod],[data-openprod]').forEach(b=>b.addEventListener('click', ()=>{
+    const id = Number(b.dataset.editprod || b.dataset.openprod);
+    const p = state.products.find(x=>x.id===id);
+    state.editingProductId = id;
+    state.productPhotosDraft = p ? pImages(p).slice() : [];
+    state.adminProductView = 'form';
+    renderAdminProducts();
+  }));
+}
+
+function renderAdminProductForm(){
+  const editing = state.editingProductId ? state.products.find(p=>p.id===state.editingProductId) : null;
+
+  document.getElementById('panel-products').innerHTML = `
+    <div class="back-link" id="backToList">← Retour à la liste des produits</div>
+    <div class="panel-box">
+      <h3>${editing ? 'Fiche produit — ' + editing.name : 'Nouveau produit'}</h3>
+      <form id="productForm">
+        <div class="admin-form-grid">
+          <input id="npName" placeholder="Nom du produit" value="${editing?editing.name:''}" required>
+          <select id="npCat">${CATS.map(c=>`<option value="${c.id}" ${editing&&editing.cat===c.id?'selected':''}>${c.label}</option>`).join('')}</select>
+          <input id="npPrice" type="number" placeholder="Prix (MAD)" value="${editing?editing.price:''}" required>
+          <input id="npOldPrice" type="number" placeholder="Ancien prix (optionnel)" value="${editing&&editing.oldPrice?editing.oldPrice:''}">
+          <input id="npStock" type="number" placeholder="Stock" value="${editing?editing.stock:''}" required>
+          <input id="npEmoji" placeholder="Emoji (repli si aucune photo)" maxlength="4" value="${editing?editing.emoji:''}">
+        </div>
+        <div class="form-row" style="margin-bottom:14px;">
+          <label>Photos du produit</label>
+          <input type="file" id="npPhotos" accept="image/*" multiple onchange="handleProductPhotosChange(this)">
+          <div class="hint">Vous pouvez sélectionner plusieurs photos à la fois. La première photo est utilisée comme photo principale — glissez-déposez l'ordre n'est pas requis, la 1ère ajoutée est la principale.</div>
+          <div id="photoDraftWrap" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;"></div>
+        </div>
+        <textarea id="npDesc" placeholder="Description" style="width:100%;padding:10px 12px;border:1.5px solid var(--grey-line);border-radius:8px;margin-bottom:12px;font-family:inherit;" rows="3">${editing?editing.desc:''}</textarea>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-primary btn-sm" type="submit">${editing ? 'Enregistrer les modifications' : 'Créer le produit'}</button>
+          <button type="button" class="btn btn-outline btn-sm" id="cancelProdForm">Annuler</button>
+        </div>
+      </form>
+    </div>`;
+
+  renderPhotoDraftPreview();
+
+  document.getElementById('backToList').addEventListener('click', ()=>{ state.adminProductView='list'; renderAdminProducts(); });
+  document.getElementById('cancelProdForm').addEventListener('click', ()=>{ state.adminProductView='list'; renderAdminProducts(); });
+
+  document.getElementById('productForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('npName').value.trim();
+    const cat = document.getElementById('npCat').value;
+    const price = Number(document.getElementById('npPrice').value)||0;
+    const oldPrice = Number(document.getElementById('npOldPrice').value)||0;
+    const stock = Number(document.getElementById('npStock').value)||0;
+    const emoji = document.getElementById('npEmoji').value.trim() || '📦';
+    const desc = document.getElementById('npDesc').value.trim() || 'Description à venir.';
+    const images = state.productPhotosDraft.slice();
+
+    if(editing){
+      Object.assign(editing, {name, cat, price, oldPrice, stock, emoji, desc, images});
+      delete editing.image;
+      showToast('Produit mis à jour');
+    } else {
+      state.products.push({ id: Math.max(0,...state.products.map(p=>p.id))+1, name, cat, price, oldPrice, stock, emoji, desc, images });
+      showToast('Produit créé');
+    }
+    await persistProducts();
+    state.adminProductView = 'list';
+    state.editingProductId = null;
+    state.productPhotosDraft = [];
+    renderAdminProducts();
+  });
+}
+
+function renderAdminOrders(){
+  document.getElementById('panel-orders').innerHTML = `
+    <div class="panel-box">
+      <h3>Toutes les commandes (${state.orders.length})</h3>
+      <table class="data-table"><thead><tr><th>Réf.</th><th>Client</th><th>Date</th><th>Heure</th><th>Articles</th><th>Total</th><th>Statut</th><th>Actions</th></tr></thead>
+      <tbody>${state.orders.map(o=>`<tr>
+        <td>#${o.ref}</td><td>${o.userName}</td><td>${o.date}</td><td>${o.time||'—'}</td><td>${o.items.reduce((s,i)=>s+i.qty,0)}</td><td>${money(o.total)}</td>
+        <td><span class="status ${o.status}">${o.status}</span></td>
+        <td class="act-btns">
+          <button class="btn-sm btn-outline" data-vieworder="${o.id}">Détails</button>
+          <button class="btn-sm btn-green" data-confirm="${o.id}" ${o.status==='confirmee'?'disabled':''}>Confirmer</button>
+          <button class="btn-sm btn-danger" data-cancel="${o.id}" ${o.status==='annulee'?'disabled':''}>Annuler</button>
+          <button class="btn-sm btn-outline" data-delorder="${o.id}">Suppr.</button>
+        </td>
+      </tr>`).join('') || `<tr><td colspan="8" style="text-align:center;color:var(--text-soft);">Aucune commande.</td></tr>`}</tbody></table>
+    </div>`;
+  document.querySelectorAll('[data-vieworder]').forEach(b=>b.addEventListener('click', ()=>{
+    goAdminOrderDetail(b.dataset.vieworder);
+  }));
+  document.querySelectorAll('[data-confirm]').forEach(b=>b.addEventListener('click', async ()=>{
+    const o = state.orders.find(x=>x.id===b.dataset.confirm); o.status='confirmee';
+    await persistOrders(); showToast('Commande confirmée'); renderAdminOrders();
+  }));
+  document.querySelectorAll('[data-cancel]').forEach(b=>b.addEventListener('click', async ()=>{
+    const o = state.orders.find(x=>x.id===b.dataset.cancel); o.status='annulee';
+    await persistOrders(); showToast('Commande annulée'); renderAdminOrders();
+  }));
+  document.querySelectorAll('[data-delorder]').forEach(b=>b.addEventListener('click', async ()=>{
+    if(!confirm('Supprimer cette commande ?')) return;
+    state.orders = state.orders.filter(o=>o.id!==b.dataset.delorder);
+    await persistOrders(); renderAdminOrders();
+  }));
+}
+
+/* ---- Page dédiée : détail d'une commande ---- */
+function goAdminOrderDetail(orderId){
+  document.querySelectorAll('.admin-link[data-tab]').forEach(a=>a.classList.toggle('active', a.dataset.tab==='orders'));
+  document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-order-detail').classList.add('active');
+  renderAdminOrderDetail(orderId);
+}
+function renderAdminOrderDetail(orderId){
+  const o = state.orders.find(x=>x.id===orderId);
+  const panel = document.getElementById('panel-order-detail');
+  if(!o){ panel.innerHTML = `<div class="panel-box">Commande introuvable.</div>`; return; }
+  const labels = {en_attente:'En attente', confirmee:'Confirmée', annulee:'Annulée'};
+  const u = state.users.find(x=>x.id===o.userId);
+  document.getElementById('adminTitle').textContent = 'Commande #' + o.ref;
+  const hasAddress = o.shippingAddress || (u && u.address);
+  const addr = o.shippingAddress || (u ? u.address : '') || '—';
+  const city = o.shippingCity || (u ? u.city : '') || '';
+  const phone = o.shippingPhone || (u ? u.phone : '') || '—';
+  panel.innerHTML = `
+    <a onclick="goAdminTab('orders')" style="display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;color:var(--text-soft);cursor:pointer;margin-bottom:16px;">← Retour aux commandes</a>
+    <div class="panel-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px;">
+        <div>
+          <h3 style="margin:0;">Commande #${o.ref}</h3>
+          <div style="color:var(--text-soft);font-size:13px;margin-top:4px;">Passée le ${o.date}${o.time?' à '+o.time:''}</div>
+        </div>
+        <span class="status ${o.status}" style="font-size:13px;padding:6px 16px;">${labels[o.status]}</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="panel-box">
+        <h3>Client</h3>
+        <div style="font-size:14px;line-height:2;">
+          <div><b>Nom :</b> ${o.userName}</div>
+          <div><b>E-mail :</b> ${o.userEmail}</div>
+          <div><b>Téléphone :</b> ${phone}</div>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>Adresse de livraison</h3>
+        ${hasAddress ? `<div style="font-size:14px;line-height:2;">
+          <div>${addr}</div>
+          <div>${city}</div>
+        </div>` : `<div class="empty-note" style="color:var(--red);">Aucune adresse de livraison renseignée par ce client.</div>`}
+      </div>
+    </div>
+
+    <div class="panel-box">
+      <h3>Articles commandés</h3>
+      <table class="data-table"><thead><tr><th></th><th>Produit</th><th>Prix unitaire</th><th>Qté</th><th>Sous-total</th></tr></thead>
+      <tbody>${o.items.map(it=>`<tr>
+        <td>${it.image?`<img src="${it.image}" style="width:38px;height:38px;border-radius:8px;object-fit:cover;">`:`<span style="font-size:24px;">${it.emoji||''}</span>`}</td>
+        <td>${it.name}</td><td>${money(it.price)}</td><td>${it.qty}</td><td>${money(it.price*it.qty)}</td>
+      </tr>`).join('')}</tbody></table>
+      <div style="display:flex;justify-content:flex-end;margin-top:14px;font-size:16px;font-weight:800;">Total : ${money(o.total)}</div>
+    </div>
+
+    <div class="panel-box" style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-green" id="detConfirm" ${o.status==='confirmee'?'disabled':''}>Confirmer la commande</button>
+      <button class="btn btn-danger" id="detCancel" ${o.status==='annulee'?'disabled':''}>Annuler la commande</button>
+      <button class="btn btn-outline" id="detDelete">Supprimer la commande</button>
+    </div>`;
+  document.getElementById('detConfirm').onclick = async ()=>{
+    o.status='confirmee'; await persistOrders(); showToast('Commande confirmée'); renderAdminOrderDetail(orderId);
+  };
+  document.getElementById('detCancel').onclick = async ()=>{
+    o.status='annulee'; await persistOrders(); showToast('Commande annulée'); renderAdminOrderDetail(orderId);
+  };
+  document.getElementById('detDelete').onclick = async ()=>{
+    if(!confirm('Supprimer cette commande ?')) return;
+    state.orders = state.orders.filter(x=>x.id!==orderId);
+    await persistOrders(); showToast('Commande supprimée'); goAdminTab('orders');
+  };
+}
+
+function renderAdminAffiliates(){
+  document.getElementById('panel-affiliates').innerHTML = `
+    <div class="panel-box">
+      <h3>Demandes et affiliés (${state.affiliates.length})</h3>
+      <table class="data-table"><thead><tr><th>Nom</th><th>E-mail</th><th>Statut</th><th>Commission</th><th>Code</th><th>Actions</th></tr></thead>
+      <tbody>${state.affiliates.map(a=>`<tr>
+        <td>${a.userName}</td><td>${a.email}</td>
+        <td><span class="status ${a.status==='actif'?'confirmee':a.status==='refuse'?'annulee':'en_attente'}">${a.status}</span></td>
+        <td>${a.commissionRate}%</td><td>${a.code||'—'}</td>
+        <td class="act-btns">
+          <button class="btn-sm btn-green" data-approveaff="${a.id}" ${a.status==='actif'?'disabled':''}>Approuver</button>
+          <button class="btn-sm btn-danger" data-rejectaff="${a.id}" ${a.status==='refuse'?'disabled':''}>Rejeter</button>
+          <button class="btn-sm btn-outline" data-editaff="${a.id}">Commission</button>
+          <button class="btn-sm btn-outline" data-delaff="${a.id}">Suppr.</button>
+        </td>
+      </tr>`).join('') || `<tr><td colspan="6" style="text-align:center;color:var(--text-soft);">Aucune demande.</td></tr>`}</tbody></table>
+    </div>`;
+  document.querySelectorAll('[data-approveaff]').forEach(b=>b.addEventListener('click', async ()=>{
+    const a = state.affiliates.find(x=>x.id===b.dataset.approveaff);
+    a.status='actif'; if(!a.code) a.code = 'NOVA-' + a.userName.split(' ')[0].toUpperCase().slice(0,4) + Math.floor(1000+Math.random()*9000);
+    await persistAffiliates(); showToast('Affilié approuvé'); renderAdminAffiliates();
+  }));
+  document.querySelectorAll('[data-rejectaff]').forEach(b=>b.addEventListener('click', async ()=>{
+    const a = state.affiliates.find(x=>x.id===b.dataset.rejectaff); a.status='refuse';
+    await persistAffiliates(); showToast('Demande refusée'); renderAdminAffiliates();
+  }));
+  document.querySelectorAll('[data-editaff]').forEach(b=>b.addEventListener('click', async ()=>{
+    const a = state.affiliates.find(x=>x.id===b.dataset.editaff);
+    const rate = prompt('Taux de commission (%)', a.commissionRate); if(rate===null) return;
+    a.commissionRate = Number(rate)||a.commissionRate;
+    await persistAffiliates(); showToast('Commission mise à jour'); renderAdminAffiliates();
+  }));
+  document.querySelectorAll('[data-delaff]').forEach(b=>b.addEventListener('click', async ()=>{
+    if(!confirm('Supprimer cette entrée ?')) return;
+    state.affiliates = state.affiliates.filter(a=>a.id!==b.dataset.delaff);
+    await persistAffiliates(); renderAdminAffiliates();
+  }));
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(async function init(){
+  await seedIfNeeded();
+  if(state.adminSession){ goAdmin(); }
+  else { goTo('home'); }
+})();
+</script>
+</body>
+</html>
